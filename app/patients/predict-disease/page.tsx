@@ -1,54 +1,25 @@
 "use client";
 import axios from "axios"; // ✅ Third-party libraries next
 import { useState, useEffect } from "react"; // ✅ React first
-// import axios from "axios"; // ✅ Third-party libraries next
 import Select, { StylesConfig } from "react-select"; // ✅ Third-party
 
 const customStyles: StylesConfig = {
-  control: (provided) => ({
+  menu: (provided) => ({
     ...provided,
-    backgroundColor: "#222",
-    borderColor: "#555",
-    minHeight: "45px",
-    maxHeight: "150px",
-    overflowY: "auto",
-  }),
-  singleValue: (provided) => ({
-    ...provided,
-    color: "#fff",
-  }),
-  multiValue: (provided) => ({
-    ...provided,
-    backgroundColor: "#444",
-    borderRadius: "8px",
-    padding: "3px 6px",
-  }),
-  multiValueLabel: (provided) => ({
-    ...provided,
-    color: "#fff",
-    fontWeight: "bold",
-  }),
-  multiValueRemove: (provided) => ({
-    ...provided,
-    color: "#fff",
-    ":hover": {
-      backgroundColor: "#ff4d4d",
-      color: "white",
-    },
-  }),
-  placeholder: (provided) => ({
-    ...provided,
-    color: "#aaa",
+    backgroundColor: "#fff", // Light background
+    color: "#000", // Dark text
   }),
   option: (provided, state) => ({
     ...provided,
-    color: state.isSelected ? "#fff" : "#000",
-    backgroundColor: state.isSelected ? "#007bff" : "#fff",
-    ":hover": {
-      backgroundColor: "#ddd",
-    },
+    backgroundColor: state.isSelected
+      ? "#007bff"
+      : state.isFocused
+        ? "#e6e6e6"
+        : "#fff",
+    color: "#000",
   }),
 };
+
 const PredictDisease = () => {
   type Symptom = {
     value: string;
@@ -73,6 +44,7 @@ const PredictDisease = () => {
         const response = await axios.get(
           "https://disease-detection2.onrender.com/symptoms"
         );
+        console.log("Fetched Symptoms:", response.data);
         setSymptomsList(response.data.symptoms);
       } catch (err) {
         setError("Failed to fetch symptoms list.");
@@ -106,6 +78,10 @@ const PredictDisease = () => {
 
     setLoading(false);
   };
+  const formattedSymptoms = symptomsList.map((symptom) => ({
+    label: String(symptom).replace("_", " ").toUpperCase(), // Convert to readable text
+    value: symptom,
+  }));
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-900 text-white px-4">
@@ -115,28 +91,21 @@ const PredictDisease = () => {
         </h1>
 
         <div className="flex flex-col gap-4">
-          {/* <Select
-            options={symptomsList.map((symptom) => ({
-              value: symptom,
-              label: symptom,
-            }))}
-            isMulti
-            onChange={setSelectedSymptoms}
-            placeholder="Select symptoms..."
-            styles={customStyles}
-            className="shad-input"
-          /> */}
-          <Select
-            options={symptomsList.map((symptom) => ({
-              value: symptom.value,
-              label: symptom.label,
-            }))}
-            isMulti
-            onChange={(newValue) => setSelectedSymptoms(newValue as Symptom[])}
-            placeholder="Select symptoms..."
-            styles={customStyles}
-            className="shad-input"
-          />
+          {symptomsList.length === 0 ? (
+            <p className="text-gray-400">Loading symptoms...</p>
+          ) : (
+            <Select
+              options={formattedSymptoms} // Always use full list
+              isMulti
+              onChange={(selectedOptions) =>
+                setSelectedSymptoms(selectedOptions as Symptom[])
+              }
+              value={selectedSymptoms}
+              placeholder="Select symptoms..."
+              styles={customStyles}
+              className="shad-input"
+            />
+          )}
 
           <button
             onClick={handlePredict}
