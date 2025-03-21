@@ -51,6 +51,10 @@ export default function Predictform() {
         >
           Go to Dashboard
         </Button>
+        {/* Beds Available (Aligned to Right) */}
+        <div className="ml-auto bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-semibold">
+          Total Beds Available Today: <span className="text-green-600">80</span>
+        </div>
         <h2 className="text-center text-2xl font-bold text-gray-800 mb-6">
           Admin Form
         </h2>
