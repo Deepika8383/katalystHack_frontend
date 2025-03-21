@@ -1,54 +1,8 @@
 "use client";
-
-import { useState, useEffect } from "react";
-import axios from "axios";
+// import { Select } from "@radix-ui/react-select";
 import Select from "react-select";
-
-// const customStyles = {
-//   control: (provided) => ({
-//     ...provided,
-//     backgroundColor: "#222", // Darker background for dropdown
-//     borderColor: "#555",
-//     minHeight: "45px",
-//     maxHeight: "150px",
-//     overflowY: "auto",
-//   }),
-//   singleValue: (provided) => ({
-//     ...provided,
-//     color: "#fff", // White text for selected single value
-//   }),
-//   multiValue: (provided) => ({
-//     ...provided,
-//     backgroundColor: "#444", // Darker gray for selected items
-//     borderRadius: "8px", // Rounded corners
-//     padding: "3px 6px", // Space around text
-//   }),
-//   multiValueLabel: (provided) => ({
-//     ...provided,
-//     color: "#fff", // White text in selected items
-//     fontWeight: "bold",
-//   }),
-//   multiValueRemove: (provided) => ({
-//     ...provided,
-//     color: "#fff", // White '×' button for contrast
-//     ":hover": {
-//       backgroundColor: "#ff4d4d", // Red background on hover
-//       color: "white",
-//     },
-//   }),
-//   placeholder: (provided) => ({
-//     ...provided,
-//     color: "#aaa",
-//   }),
-//   option: (provided, state) => ({
-//     ...provided,
-//     color: state.isSelected ? "#fff" : "#000",
-//     backgroundColor: state.isSelected ? "#007bff" : "#fff",
-//     ":hover": {
-//       backgroundColor: "#ddd",
-//     },
-//   }),
-// };
+import axios from "axios";
+import { useState, useEffect } from "react";
 import { StylesConfig } from "react-select";
 
 const customStyles: StylesConfig = {
@@ -96,11 +50,20 @@ const customStyles: StylesConfig = {
     },
   }),
 };
-
 const PredictDisease = () => {
-  const [symptomsList, setSymptomsList] = useState([]);
-  const [selectedSymptoms, setSelectedSymptoms] = useState([]);
-  const [prediction, setPrediction] = useState(null);
+  type Symptom = {
+    value: string;
+    label: string;
+  };
+
+  const [symptomsList, setSymptomsList] = useState<Symptom[]>([]);
+  const [selectedSymptoms, setSelectedSymptoms] = useState<Symptom[]>([]);
+  type Prediction = {
+    predicted_disease: string;
+    top_3_predictions: { disease: string; probability: string }[];
+  };
+
+  const [prediction, setPrediction] = useState<Prediction | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -153,13 +116,24 @@ const PredictDisease = () => {
         </h1>
 
         <div className="flex flex-col gap-4">
-          <Select
+          {/* <Select
             options={symptomsList.map((symptom) => ({
               value: symptom,
               label: symptom,
             }))}
             isMulti
             onChange={setSelectedSymptoms}
+            placeholder="Select symptoms..."
+            styles={customStyles}
+            className="shad-input"
+          /> */}
+          <Select
+            options={symptomsList.map((symptom) => ({
+              value: symptom.value,
+              label: symptom.label,
+            }))}
+            isMulti
+            onChange={(newValue) => setSelectedSymptoms(newValue as Symptom[])}
             placeholder="Select symptoms..."
             styles={customStyles}
             className="shad-input"
