@@ -14,6 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
+import { useRouter } from "next/navigation";
 
 const predictions = [
   { Patient_ID: "P1", Predicted_Stay: 9 },
@@ -31,6 +32,7 @@ const predictions = [
 export default function Predictform() {
   const [predictedStay, setPredictedStay] = useState<number | null>(null);
   const [isWeekend, setIsWeekend] = useState(false);
+  const router = useRouter(); // Initialize router
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,9 +44,17 @@ export default function Predictform() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-900 p-6">
       <Card className="w-full max-w-4xl rounded-2xl bg-white p-6 shadow-lg">
+        {/* Go to Dashboard Button (Top-Left) */}
+        <Button
+          className="absolute top-4 left-4 bg-blue-600 hover:bg-blue-700 p-3 text-white rounded-lg"
+          onClick={() => router.push("/admin/dashbored")}
+        >
+          Go to Dashboard
+        </Button>
         <h2 className="text-center text-2xl font-bold text-gray-800 mb-6">
           Admin Form
         </h2>
+
         <form
           onSubmit={handleSubmit}
           className="grid grid-cols-1 md:grid-cols-2 gap-4"
@@ -187,6 +197,15 @@ export default function Predictform() {
             Predicted Bed Stay: {predictedStay} days
           </p>
         )}
+        {/* Go to Dashboard Button */}
+        <div className="mt-6 flex justify-center">
+          <Button
+            className="bg-blue-600 hover:bg-blue-700 p-3 text-white rounded-lg"
+            onClick={() => router.push("/admin/dashbored")}
+          >
+            Go to Dashboard
+          </Button>
+        </div>
       </Card>
     </div>
   );
