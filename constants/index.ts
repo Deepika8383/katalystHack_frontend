@@ -33,7 +33,6 @@ export const IdentificationTypes = [
   "Military ID Card",
   "National Identity Card",
   "Passport",
-  "Resident Alien Card (Green Card)",
   "Social Security Card",
   "State ID Card",
   "Student ID Card",
@@ -43,39 +42,39 @@ export const IdentificationTypes = [
 export const Doctors = [
   {
     image: "/assets/images/dr-green.png",
-    name: "John Green",
+    name: "Dr. Devi Shetty",
   },
   {
     image: "/assets/images/dr-cameron.png",
-    name: "Leila Cameron",
+    name: "Dr. Naresh Trehan",
   },
   {
     image: "/assets/images/dr-livingston.png",
-    name: "David Livingston",
+    name: "Dr. Prathap C. Reddy",
   },
   {
     image: "/assets/images/dr-peter.png",
-    name: "Evan Peter",
+    name: "Dr. Randeep Guleria",
   },
   {
     image: "/assets/images/dr-powell.png",
-    name: "Jane Powell",
+    name: " Dr. B. M. Hegde",
   },
   {
     image: "/assets/images/dr-remirez.png",
-    name: "Alex Ramirez",
+    name: "Dr. P. Raghu Ram",
   },
   {
     image: "/assets/images/dr-lee.png",
-    name: "Jasmine Lee",
+    name: " Dr. M. S. Valiathan",
   },
   {
     image: "/assets/images/dr-cruz.png",
-    name: "Alyana Cruz",
+    name: "Dr. Gagandeep Kang",
   },
   {
     image: "/assets/images/dr-sharma.png",
-    name: "Hardik Sharma",
+    name: "Dr. Sanjay Oak",
   },
 ];
 
