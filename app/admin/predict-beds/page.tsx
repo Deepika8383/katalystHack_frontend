@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-
 const predictions = [
   { Patient_ID: "P1", Predicted_Stay: 9 },
   { Patient_ID: "P2", Predicted_Stay: 10 },
