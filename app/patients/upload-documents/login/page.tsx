@@ -22,6 +22,7 @@ const LoginPage = () => {
           password,
         }
       );
+      console.log(response);
       localStorage.setItem("userId", userId); // Store user ID
       router.push("/patients/upload-documents"); // Redirect to dashboard
     } catch (error) {

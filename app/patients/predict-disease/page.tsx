@@ -1,9 +1,8 @@
 "use client";
-// import { Select } from "@radix-ui/react-select";
-import Select from "react-select";
-import axios from "axios";
-import { useState, useEffect } from "react";
-import { StylesConfig } from "react-select";
+import axios from "axios"; // ✅ Third-party libraries next
+import { useState, useEffect } from "react"; // ✅ React first
+// import axios from "axios"; // ✅ Third-party libraries next
+import Select, { StylesConfig } from "react-select"; // ✅ Third-party
 
 const customStyles: StylesConfig = {
   control: (provided) => ({
