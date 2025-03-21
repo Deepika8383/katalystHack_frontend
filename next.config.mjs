@@ -73,10 +73,13 @@
 // });
 // import { withSentryConfig } from "@sentry/nextjs"; // Comment out Sentry import
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-};
+// /** @type {import('next').NextConfig} */
+// const nextConfig = {
+//   reactStrictMode: true,
+// };
 
-// Export the normal Next.js config instead of using Sentry
+// // Export the normal Next.js config instead of using Sentry
+// export default nextConfig;
+
+const nextConfig = {};
 export default nextConfig;
