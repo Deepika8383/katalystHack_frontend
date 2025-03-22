@@ -1,7 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useRouter } from "next/navigation"; // Next.js imports should come before project imports
+// Next.js imports should come before project imports
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
