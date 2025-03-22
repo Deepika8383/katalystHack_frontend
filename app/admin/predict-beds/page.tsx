@@ -202,14 +202,14 @@ export default function Predictform() {
           </p>
         )}
         {/* Go to Dashboard Button */}
-        <div className="mt-6 flex justify-center">
+        {/* <div className="mt-6 flex justify-center">
           <Button
             className="bg-blue-600 hover:bg-blue-700 p-3 text-white rounded-lg"
             onClick={() => router.push("/admin/dashbored")}
           >
             Go to Dashboard
           </Button>
-        </div>
+        </div> */}
       </Card>
     </div>
   );
