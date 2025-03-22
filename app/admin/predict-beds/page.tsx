@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation"; // Next.js imports should come before project imports
+
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -13,7 +15,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
-import { useRouter } from "next/navigation";
 
 const predictions = [
   { Patient_ID: "P1", Predicted_Stay: 9 },
@@ -200,15 +201,6 @@ export default function Predictform() {
             Predicted Bed Stay: {predictedStay} days
           </p>
         )}
-        {/* Go to Dashboard Button */}
-        {/* <div className="mt-6 flex justify-center">
-          <Button
-            className="bg-blue-600 hover:bg-blue-700 p-3 text-white rounded-lg"
-            onClick={() => router.push("/admin/dashbored")}
-          >
-            Go to Dashboard
-          </Button>
-        </div> */}
       </Card>
     </div>
   );
